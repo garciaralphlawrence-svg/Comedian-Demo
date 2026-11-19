@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1054" width="700" height="1054">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3a44"/>
+      <stop offset="1" stop-color="#16161c"/>
+    </linearGradient>
+  </defs>
+  <!-- placeholder silhouette: replace with the client's background-removed PNG -->
+  <g fill="url(#g)">
+    <ellipse cx="350" cy="250" rx="120" ry="145"/>
+    <rect x="300" y="370" width="100" height="90" rx="30"/>
+    <path d="M70 1054 C70 700 150 470 350 450 C550 470 630 700 630 1054 Z"/>
+    <!-- mic arm -->
+    <path d="M520 640 C580 560 600 470 560 420 L590 400 C640 470 620 580 545 665 Z"/>
+    <ellipse cx="572" cy="398" rx="34" ry="44" transform="rotate(-30 572 398)"/>
+  </g>
+  <text x="350" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#7a7a88" letter-spacing="6">CLIENT PHOTO</text>
+</svg>

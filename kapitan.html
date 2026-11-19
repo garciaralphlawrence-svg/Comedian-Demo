@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kapitan — Fan Assistant</title>
+  <meta name="description" content="A 24/7 fan assistant that answers questions about shows, tickets, merch and bookings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0b0b0f; --text: #f5f3ee; --muted: #a3a1ab; --accent: #ffc531; --border: rgba(255,255,255,.1); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { min-height: 100svh; background: radial-gradient(ellipse at 20% 10%, rgba(255,197,49,.12), transparent 50%), radial-gradient(ellipse at 10% 90%, rgba(109,93,252,.14), transparent 50%), var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; line-height: 1.6; }
+    .intro { width: min(560px, 100% - 32px); padding: 9vh 0 40px; margin-left: max(16px, 6vw); }
+    .tag { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(255,197,49,.3); border-radius: 999px; padding: 7px 14px; }
+    h1 { font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: .95; margin: 20px 0 16px; }
+    h1 span { color: var(--accent); }
+    p.lead { color: var(--muted); font-size: 1.1rem; }
+    ul { list-style: none; margin: 28px 0; display: grid; gap: 12px; }
+    li { display: flex; gap: 12px; align-items: flex-start; }
+    li b { flex: none; width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: rgba(255,197,49,.12); color: var(--accent); font-size: .9rem; }
+    .try { margin-top: 10px; font-size: .9rem; color: var(--muted); }
+    .try code { display: inline-block; margin: 4px 4px 0 0; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--border); color: var(--text); font-family: inherit; }
+    .back { display: inline-block; margin-top: 30px; color: var(--accent); font-weight: 600; text-decoration: none; }
+    @media (max-width: 1100px) { .intro { padding-top: 6vh; } }
+  </style>
+</head>
+<body>
+  <main class="intro">
+    <span class="tag">Kapitan · AI fan assistant</span>
+    <h1>Your fans ask.<br><span>Kapitan answers.</span></h1>
+    <p class="lead">A 24/7 assistant on <b data-name></b>'s website. It answers fans instantly about shows, tickets, merch and bookings, in English or Taglish.</p>
+    <ul>
+      <li><b>🎟</b><div><strong>Sells tickets</strong><br><span style="color:var(--muted)">Next show, dates by city, what's sold out, with a direct ticket link.</span></div></li>
+      <li><b>💼</b><div><strong>Routes business inquiries</strong><br><span style="color:var(--muted)">Bookings, press and brand deals go straight to the right contact.</span></div></li>
+      <li><b>🔄</b><div><strong>Always up to date</strong><br><span style="color:var(--muted)">It reads the same tour list as the website. Add a date and Kapitan knows it.</span></div></li>
+    </ul>
+    <p class="try">Try asking:<br><code>When is the next show?</code><code>May show ba sa Cebu?</code><code>Sold out na ba sa Manila?</code><code>Book him for a corporate event</code><code>Magkano merch?</code></p>
+    <a class="back" href="index.html">← See the full website</a>
+  </main>
+
+  <script src="data.js"></script>
+  <script>document.querySelectorAll('[data-name]').forEach(function (el) { el.textContent = window.SITE.name; });</script>
+  <script src="kapitan-kb.js"></script>
+  <script src="https://garciaralphlawrence-svg.github.io/AI-Analytics-Studio/widget/kapitan.js" data-site="comedian" data-api="none" data-open="true" defer></script>
+</body>
+</html>

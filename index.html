@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Name — Official Site</title>
+  <meta name="description" content="Official site: tour dates, tickets, videos, merch and news.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- top social strip -->
+  <div class="topbar"><div class="wrap"><span class="topbar-tour" data-bind="tourName"></span><div class="socials sm" data-render="socials"></div></div></div>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="logo" data-bind="name"></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#tour">Tour</a><a href="#about">Bio</a><a href="#videos">Videos</a><a href="#merch">Shop</a><a href="#news">News</a><a href="#contact">Contact</a>
+      </nav>
+      <a href="#tour" class="btn btn-primary btn-sm nav-cta">Tickets</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="spotlight" aria-hidden="true"></div>
+      <div class="hero-name" aria-hidden="true" data-depth="0.4"><span data-bind="name"></span></div>
+
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span><span data-bind="tourName"></span></p>
+          <h1 class="hero-title" data-bind="name"></h1>
+          <p class="hero-tag" data-bind="tagline"></p>
+          <div class="hero-btns" data-render="heroButtons"></div>
+          <div class="next-show" id="nextShow"></div>
+        </div>
+
+        <div class="hero-visual" id="heroVisual">
+          <div class="portrait" data-depth="0.6">
+            <div class="halo" data-depth="1.3"></div>
+            <div class="ring ring-a" data-depth="1"></div>
+            <div class="ring ring-b" data-depth="1.2"></div>
+            <div class="sweep" aria-hidden="true"></div>
+            <img class="portrait-img" id="portraitImg" alt="" width="700" height="1054">
+          </div>
+          <div data-render="chips"></div>
+          <span class="float-icon fi-1" data-depth="3"><i class="fa-solid fa-microphone"></i></span>
+          <span class="float-icon fi-2" data-depth="2.4"><i class="fa-solid fa-face-laugh-squint"></i></span>
+          <span class="float-icon fi-3" data-depth="3.2"><i class="fa-solid fa-ticket"></i></span>
+        </div>
+      </div>
+      <a href="#promos" class="scroll-cue" aria-label="Scroll"><span></span></a>
+    </section>
+
+    <!-- ticker -->
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+    <!-- ================= PROMO TILES ================= -->
+    <section class="section" id="promos"><div class="wrap promos" data-render="promos"></div></section>
+
+    <!-- ================= TOUR ================= -->
+    <section class="section" id="tour">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="kicker">Live on stage</span><h2>Tour Dates</h2></div>
+        <ul class="tour-list" id="tourList"></ul>
+        <div class="center"><button class="btn btn-ghost" id="tourMore">See all dates</button></div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section alt" id="about">
+      <div class="wrap about">
+        <div class="sec-head reveal"><span class="kicker">The story</span><h2>About <span data-bind="firstName"></span></h2></div>
+        <div class="about-body reveal" data-render="about"></div>
+        <div class="stats reveal" data-render="stats"></div>
+      </div>
+    </section>
+
+    <!-- ================= VIDEOS ================= -->
+    <section class="section" id="videos">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="kicker">Watch</span><h2>Videos</h2></div>
+        <div class="video-grid" data-render="videos"></div>
+        <div class="center"><a class="btn btn-ghost" data-href="videosMore" target="_blank" rel="noopener">See more videos</a></div>
+      </div>
+    </section>
+
+    <!-- ================= MERCH ================= -->
+    <section class="section alt" id="merch">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="kicker">Official store</span><h2>Merch</h2></div>
+        <div class="merch-grid" data-render="merch"></div>
+        <div class="center"><a class="btn btn-ghost" data-href="merchStore" target="_blank" rel="noopener">Shop all merch</a></div>
+      </div>
+    </section>
+
+    <!-- ================= NEWS ================= -->
+    <section class="section" id="news">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="kicker">Latest</span><h2>News</h2></div>
+        <div class="news-grid" data-render="news"></div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section alt" id="contact">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="kicker">Get in touch</span><h2>Contact</h2></div>
+        <div class="contact-grid" data-render="contacts"></div>
+        <div class="follow reveal">
+          <h3>Follow <span data-bind="firstName"></span></h3>
+          <div class="socials lg" data-render="socials"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> <span data-bind="name"></span>. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms</a></span>
+    </div>
+  </footer>
+
+  <!-- video lightbox -->
+  <div class="lightbox" id="lightbox" hidden><button class="lb-close" aria-label="Close">&times;</button><div class="lb-frame" id="lbFrame"></div></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <!-- Kapitan fan assistant: knowledge is generated from data.js -->
+  <script src="kapitan-kb.js"></script>
+  <script src="https://garciaralphlawrence-svg.github.io/AI-Analytics-Studio/widget/kapitan.js" data-site="comedian" data-api="none" defer></script>
+</body>
+</html>
