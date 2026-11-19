@@ -22,6 +22,8 @@
     <div class="curtain-mark"><span data-bind="monogram"></span></div>
   </div>
 
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
       <a href="#top" class="logo"><span class="logo-mark" data-bind="monogram"></span><span data-bind="name"></span></a>
@@ -54,16 +56,24 @@
 
         <div class="hero-visual" id="heroVisual">
           <div class="portrait" data-scroll="-0.08">
+            <div class="rays" aria-hidden="true"></div>
             <div class="halo"></div>
             <div class="ring ring-a"></div>
             <div class="ring ring-b"></div>
             <div class="sweep" aria-hidden="true"></div>
             <picture>
               <source id="photoWebp" type="image/webp">
-              <img class="portrait-img" id="portraitImg" alt="" width="890" height="1014">
+              <img class="portrait-img" id="portraitImg" alt="" width="1238" height="1500">
             </picture>
           </div>
+          <!-- spinning seal + corner cards: placed in empty space, never over Joseph -->
+          <div class="spin-badge" aria-hidden="true">
+            <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
+              <text><textPath href="#circ" id="badgeText"></textPath></text></svg>
+            <span data-bind="monogram"></span>
+          </div>
           <div data-render="chips"></div>
+          <a class="yt-link" id="ytLink" target="_blank" rel="noopener" aria-label="Watch Joseph on YouTube" title="Watch on YouTube"><i class="fa-brands fa-youtube"></i></a>
         </div>
       </div>
       <a href="#promos" class="scroll-cue" aria-label="Scroll down"><span></span></a>
@@ -75,7 +85,7 @@
     <section class="section" id="promos"><div class="wrap promos" data-render="promos"></div></section>
 
     <!-- ================= FEATURED EVENT ================= -->
-    <section class="section event" id="event">
+    <section class="section event" id="event" data-bokeh>
       <div class="event-glow" aria-hidden="true"></div>
       <div class="wrap event-grid" id="eventWrap"></div>
     </section>
@@ -104,6 +114,8 @@
         </div>
       </div>
     </section>
+
+    <div class="big-marquee" aria-hidden="true"><div class="bm-track" id="bigMarquee"></div></div>
 
     <!-- ================= VIDEOS ================= -->
     <section class="section" id="videos">
@@ -134,7 +146,7 @@
     </section>
 
     <!-- ================= CONTACT ================= -->
-    <section class="section alt" id="contact">
+    <section class="section alt" id="contact" data-bokeh>
       <div class="wrap">
         <div class="sec-head center-head reveal"><span class="kicker">Bookings &amp; tickets</span><h2>Let's <em>Talk</em></h2></div>
         <div class="contact-grid" data-render="contacts"></div>

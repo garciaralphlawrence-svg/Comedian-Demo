@@ -8,18 +8,18 @@ window.SITE = {
   monogram: "JG",
   tagline: "Comedian · Diva · Entertainer",
   tourName: "Dreamgays Rewind — Live in LA",
-  photo: "assets/joseph-cutout.webp",
-  photoFallback: "assets/joseph-cutout.png",
+  photo: "assets/joseph-full.webp",
+  photoFallback: "assets/joseph-full.png",
+  youtube: "https://www.youtube.com/@josephgelito9803",
 
   heroButtons: [
     { label: "Get Tickets", href: "#event", primary: true },
     { label: "Watch on YouTube", href: "https://www.youtube.com/@josephgelito9803" }
   ],
 
+  // floating card beside his feet (never over the photo); the YouTube button links to `youtube`
   chips: [
-    { icon: "fa-solid fa-star", title: "Dreamgays Rewind", sub: "Jan 22 · Long Beach, CA" },
-    { icon: "fa-solid fa-masks-theater", title: "Comedy & Diva", sub: "Laughs guaranteed" },
-    { icon: "fa-brands fa-youtube", title: "Panlasang Charot", sub: "On YouTube" }
+    { icon: "fa-solid fa-star", title: "Dreamgays Rewind", sub: "Jan 22 · Long Beach, CA", href: "#event" }
   ],
 
   socials: [
@@ -30,7 +30,7 @@ window.SITE = {
   promos: [
     { kicker: "Live in LA · Jan 22", title: "Dreamgays Rewind", href: "#event", img: "assets/dreamgays-rewind-poster.webp", pos: "50% 4%" },
     { kicker: "Watch", title: "Joseph on YouTube", href: "https://www.youtube.com/@josephgelito9803", img: "https://i.ytimg.com/vi/Ma3LohCwQcY/hqdefault.jpg" },
-    { kicker: "Bookings", title: "Book Joseph", href: "#contact", img: "assets/joseph-cutout.webp", pos: "50% 0%", contain: true }
+    { kicker: "Bookings", title: "Book Joseph", href: "#contact", img: "assets/joseph-full.webp", pos: "50% 100%", contain: true }
   ],
 
   /* status: "available" | "low" | "soldout".  url: ticket link (tel: works too).

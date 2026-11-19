@@ -33,7 +33,7 @@
   const R = {
     socials: () => S.socials.map(s => `<a href="${esc(s.href)}" aria-label="${esc(s.label)}"${ext(s.href)}><i class="${s.icon}"></i></a>`).join(''),
     heroButtons: () => S.heroButtons.map(b => `<a href="${esc(b.href)}" class="btn ${b.primary ? 'btn-gold' : 'btn-ghost'}"${ext(b.href)}><i class="${b.primary ? 'fa-solid fa-ticket' : 'fa-brands fa-youtube'}"></i>${esc(b.label)}</a>`).join(''),
-    chips: () => S.chips.map((c, i) => `<div class="chip chip-${i}"><i class="${c.icon}"></i><div><b>${esc(c.title)}</b><small>${esc(c.sub)}</small></div></div>`).join(''),
+    chips: () => S.chips.map((c, i) => `<${c.href ? `a href="${esc(c.href)}"${ext(c.href)}` : 'div'} class="chip chip-${i}"><i class="${c.icon}"></i><div><b>${esc(c.title)}</b><small>${esc(c.sub)}</small></div></${c.href ? 'a' : 'div'}>`).join(''),
     promos: () => S.promos.map(p => `<a class="promo reveal${p.contain ? ' contain' : ''}" href="${esc(p.href)}"${ext(p.href)}><img src="${esc(p.img)}" alt="" loading="lazy" style="object-position:${esc(p.pos || '50% 50%')}"><span class="arrow"><i class="fa-solid fa-arrow-right"></i></span><small>${esc(p.kicker)}</small><h3>${esc(p.title)}</h3></a>`).join(''),
     about: () => S.about.map(p => `<p>${esc(p)}</p>`).join(''),
     stats: () => S.stats.map(s => `<div class="stat"><b data-count="${esc(s.value)}">${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join(''),
@@ -45,6 +45,46 @@
   };
   $$('[data-render]').forEach(el => { const f = R[el.dataset.render]; if (f) el.innerHTML = f(); });
   const chipHost = $('#heroVisual [data-render="chips"]'); chipHost.replaceWith(...chipHost.children);
+  const yt = $('#ytLink');
+  if (S.youtube) yt.href = S.youtube; else yt.remove();
+  const bt = $('#badgeText');
+  bt.textContent = (S.tagline.replace(/\s*·\s*/g, ' ✦ ') + ' ✦ ').toUpperCase();
+  bt.setAttribute('textLength', (2 * Math.PI * 78 - 4).toFixed(1)); bt.setAttribute('lengthAdjust', 'spacing'); // text wraps the full circle
+
+  // section headings rise in word by word (keeps the gold <em> styling)
+  $$('.sec-head h2').forEach(h => {
+    h.classList.add('split');
+    const wrap = node => {
+      [...node.childNodes].forEach(ch => {
+        if (ch.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          ch.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement('span'); w.className = 'w';
+            const inner = document.createElement('span'); inner.textContent = part; w.appendChild(inner); frag.appendChild(w);
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1 && !ch.classList.contains('w')) {
+          const w = document.createElement('span'); w.className = 'w';
+          const inner = document.createElement('span'); node.replaceChild(w, ch); inner.appendChild(ch); w.appendChild(inner);
+        }
+      });
+    };
+    wrap(h);
+    $$('.w > span', h).forEach((sp, i) => sp.style.transitionDelay = (.08 * i + .1) + 's');
+  });
+
+  // floating gold bokeh in sections marked data-bokeh
+  if (!reduce) $$('[data-bokeh]').forEach(sec => {
+    const b = document.createElement('div'); b.className = 'bokeh'; b.setAttribute('aria-hidden', 'true');
+    b.innerHTML = Array.from({ length: 14 }, () => `<i style="--x:${(Math.random() * 100).toFixed(1)}%;--s:${(10 + Math.random() * 34).toFixed(0)}px;--t:${(12 + Math.random() * 14).toFixed(1)}s;--d:${(-Math.random() * 20).toFixed(1)}s"></i>`).join('');
+    sec.prepend(b);
+  });
+
+  // big outline name strip
+  const bm = $('#bigMarquee');
+  if (bm) { const one = [S.name, 'Comedy', S.name, 'Diva', S.name, 'Live'].map(t => `<span>${esc(t)}</span><i>✦</i>`).join(''); bm.innerHTML = one + one + one; }
 
   /* ---------- shows ---------- */
   const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -80,7 +120,7 @@
           <li><i class="fa-regular fa-calendar"></i><div><b>${DAY[d.getDay()]}, ${MONTH[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}</b><span>${ev.time ? 'Show starts ' + esc(ev.time) : ''}</span></div></li>
           <li><i class="fa-solid fa-location-dot"></i><div><b>${esc(ev.venue)}</b><span><a href="${map}" target="_blank" rel="noopener">${esc(ev.address || ev.city)}</a></span></div></li>
         </ul>
-        ${ev.prices ? `<div class="prices reveal">${ev.prices.map((p, i) => `<div class="price${i === 0 ? ' vip' : ''}"><small>${esc(p.label)}</small><b>${esc(p.price)}</b></div>`).join('')}</div>` : ''}
+        ${ev.prices ? `<div class="prices reveal">${ev.prices.map((p, i) => `<div class="price${i === 0 ? ' vip' : ''}"><small>${esc(p.label)}</small><b data-count="${esc(p.price)}">${esc(p.price)}</b></div>`).join('')}</div>` : ''}
         <a class="btn btn-gold reveal" href="${esc(ev.url)}"${ext(ev.url)}><i class="fa-solid ${/^tel:/.test(ev.url) ? 'fa-phone' : 'fa-ticket'}"></i>${esc(ev.cta || 'Get Tickets')}</a>
         ${ev.ticketPhones ? `<div class="ticket-lines reveal">${ev.ticketPhones.map(p => `<a href="${tel(p.phone)}"><i class="fa-solid fa-phone"></i>${esc(p.name)} · ${esc(p.phone)}</a>`).join('')}</div>` : ''}
         <span class="count-label reveal">Showtime in</span>
@@ -177,9 +217,25 @@
   const layers = $$('[data-scroll]');
   const heroName = $('.hero-name');
   let ticking = false;
+  const progress = $('#progress'), heroCopy = $('.hero-copy'), aboutPic = $('#aboutImg');
+  let bmX = 0, lastY = scrollY, vel = 0;
+  // the name strip drifts on its own and surges / reverses with scroll speed
+  (function bmLoop() {
+    if (bm && !reduce) {
+      vel *= .92; bmX -= .6 + vel * .9;
+      const w = bm.scrollWidth / 3;
+      if (w) { if (bmX <= -w) bmX += w; if (bmX > 0) bmX -= w; }
+      bm.style.transform = `translate3d(${bmX}px,0,0)`;
+    }
+    requestAnimationFrame(bmLoop);
+  })();
   function onScroll() {
     const y = scrollY;
+    vel += (y - lastY) * .08; vel = Math.max(-40, Math.min(40, vel)); lastY = y;
     nav.classList.toggle('scrolled', y > 30);
+    progress.style.transform = `scaleX(${Math.min(1, y / Math.max(1, document.documentElement.scrollHeight - innerHeight))})`;
+    if (!reduce && heroCopy && y < innerHeight) heroCopy.style.opacity = Math.max(0, 1 - y / (innerHeight * .7)).toFixed(3);
+    if (aboutPic && !reduce) { const r = aboutPic.parentElement.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) aboutPic.style.setProperty('--ap', ((r.top + r.height / 2 - innerHeight / 2) * -.06).toFixed(1) + 'px'); }
     if (!reduce && y < innerHeight * 1.2) {
       layers.forEach(l => l.style.translate = `${l.classList.contains('portrait') ? '-50%' : '0'} ${y * +l.dataset.scroll}px`);
       heroName.style.transform = `translateX(${-y * .25}px)`;
@@ -212,10 +268,10 @@
   }), { threshold: .12 });
   $$('.reveal, .reveal-wipe').forEach((el, i) => { if (el.classList.contains('reveal')) el.style.transitionDelay = `${(i % 4) * .08}s`; io.observe(el); });
   function countUp(el) {
-    const m = el.dataset.count.match(/^(\d+)(.*)$/);
+    const m = el.dataset.count.match(/^(\D*)(\d+)(.*)$/);
     if (!m || reduce) return;
-    const end = +m[1], suf = m[2], t0 = performance.now();
-    (function step(t) { const k = Math.min(1, (t - t0) / 1400); el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(step); })(t0);
+    const pre = m[1], end = +m[2], suf = m[3], t0 = performance.now();
+    (function step(t) { const k = Math.min(1, (t - t0) / 1400); el.textContent = pre + Math.round(end * (1 - Math.pow(1 - k, 3))) + suf; if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
   /* ---------- videos ---------- */
