@@ -1,96 +1,98 @@
 /* =========================================================
-   ALL CLIENT CONTENT LIVES HERE.
-   Edit this file only — the page builds itself from it.
+   ALL SITE CONTENT LIVES HERE — edit this file only.
+   The website AND the Kapitan fan assistant read from it.
    ========================================================= */
 window.SITE = {
-  name: "Client Name",              // shown huge behind the photo
-  firstName: "Client",               // used in "Follow ___", "Talk to ___"
-  tagline: "Stand-up comedian · Storyteller · On tour now",
-  tourName: "The Placeholder Tour 2027",
-  photo: "assets/placeholder-cutout.svg", // swap to assets/client-cutout.png (transparent bg)
+  name: "Joseph Gelito",
+  firstName: "Joseph",
+  monogram: "JG",
+  tagline: "Comedian · Diva · Entertainer",
+  tourName: "Dreamgays Rewind — Live in LA",
+  photo: "assets/joseph-cutout.webp",
+  photoFallback: "assets/joseph-cutout.png",
 
   heroButtons: [
-    { label: "Get Tickets", href: "#tour", primary: true },
-    { label: "Watch the Special", href: "#videos" }
+    { label: "Get Tickets", href: "#event", primary: true },
+    { label: "Watch on YouTube", href: "https://www.youtube.com/@josephgelito9803" }
   ],
 
-  // little glass cards that float around the photo
   chips: [
-    { icon: "fa-solid fa-ticket", title: "Sold-out shows", sub: "40+ cities" },
-    { icon: "fa-solid fa-tv", title: "New special", sub: "Streaming now" },
-    { icon: "fa-solid fa-microphone-lines", title: "Weekly podcast", sub: "New eps Thursdays" }
+    { icon: "fa-solid fa-star", title: "Dreamgays Rewind", sub: "Jan 22 · Long Beach, CA" },
+    { icon: "fa-solid fa-masks-theater", title: "Comedy & Diva", sub: "Laughs guaranteed" },
+    { icon: "fa-brands fa-youtube", title: "Panlasang Charot", sub: "On YouTube" }
   ],
 
   socials: [
-    { icon: "fa-brands fa-instagram", label: "Instagram", href: "#" },
-    { icon: "fa-brands fa-tiktok", label: "TikTok", href: "#" },
-    { icon: "fa-brands fa-youtube", label: "YouTube", href: "#" },
-    { icon: "fa-brands fa-facebook-f", label: "Facebook", href: "#" },
-    { icon: "fa-brands fa-x-twitter", label: "X", href: "#" },
-    { icon: "fa-solid fa-podcast", label: "Podcast", href: "#" }
+    { icon: "fa-brands fa-youtube", label: "YouTube", href: "https://www.youtube.com/@josephgelito9803" }
   ],
 
-  // big promo tiles under the hero (specials, podcast, merch drop...)
+  // big tiles under the hero
   promos: [
-    { kicker: "On Tour", title: "The Placeholder Tour", href: "#tour", img: "" },
-    { kicker: "Streaming", title: "New Comedy Special", href: "#", img: "" },
-    { kicker: "Listen", title: "The Podcast", href: "#", img: "" }
+    { kicker: "Live in LA · Jan 22", title: "Dreamgays Rewind", href: "#event", img: "assets/dreamgays-rewind-poster.webp", pos: "50% 4%" },
+    { kicker: "Watch", title: "Joseph on YouTube", href: "https://www.youtube.com/@josephgelito9803", img: "https://i.ytimg.com/vi/Ma3LohCwQcY/hqdefault.jpg" },
+    { kicker: "Bookings", title: "Book Joseph", href: "#contact", img: "assets/joseph-cutout.webp", pos: "50% 0%", contain: true }
   ],
 
-  // status: "available" | "low" | "soldout"   note: optional badge text
+  /* status: "available" | "low" | "soldout".  url: ticket link (tel: works too).
+     featured: true → gets the big poster + countdown section. */
   tour: [
-    { date: "2027-01-15", city: "Manila, PH", venue: "Venue Name Arena", status: "soldout", url: "#", note: "" },
-    { date: "2027-01-16", city: "Manila, PH", venue: "Venue Name Arena", status: "low", url: "#", note: "Second Show Added!" },
-    { date: "2027-01-23", city: "Cebu City, PH", venue: "Placeholder Theater", status: "available", url: "#", note: "" },
-    { date: "2027-02-06", city: "Davao City, PH", venue: "Convention Center", status: "available", url: "#", note: "New Show Added!" },
-    { date: "2027-02-14", city: "Singapore", venue: "Esplanade Theatre", status: "low", url: "#", note: "" },
-    { date: "2027-02-20", city: "Dubai, UAE", venue: "Coca-Cola Arena", status: "available", url: "#", note: "" },
-    { date: "2027-03-05", city: "Los Angeles, CA", venue: "The Wiltern", status: "available", url: "#", note: "" },
-    { date: "2027-03-12", city: "Las Vegas, NV", venue: "Placeholder Casino", status: "available", url: "#", note: "" },
-    { date: "2027-03-19", city: "Honolulu, HI", venue: "Blaisdell Concert Hall", status: "available", url: "#", note: "" },
-    { date: "2027-03-26", city: "Toronto, Canada", venue: "Massey Hall", status: "available", url: "#", note: "" }
+    {
+      date: "2027-01-22", time: "7:00 PM", tz: "America/Los_Angeles", startUtc: "2027-01-23T03:00:00Z",
+      show: "Dreamgays Rewind",
+      lineup: "Joseph Gelito with Thage & Bona",
+      city: "Long Beach, CA", venue: "The Noypitz Bar & Grill",
+      address: "7591 E Carson St, Long Beach, CA 90808",
+      status: "available", url: "tel:+17143223528", cta: "Call for Tickets",
+      prices: [{ label: "VIP", price: "$128" }, { label: "General Admission", price: "$88" }],
+      ticketPhones: [
+        { name: "Joseph Gelito", phone: "714-322-3528" },
+        { name: "Enteng", phone: "323-449-3174" },
+        { name: "Bona", phone: "510-303-6817" },
+        { name: "Thage", phone: "650-296-0650" }
+      ],
+      poster: "assets/dreamgays-rewind-poster.webp",
+      featured: true, note: "Live in Los Angeles!"
+    }
   ],
-  tourPreview: 6, // rows shown before "See all dates"
+  tourPreview: 6,
 
   about: [
-    "Two or three paragraphs of the client's bio go here — where they grew up, how they got into comedy, and what their act is about.",
-    "Career highlights: specials, festivals, TV appearances, awards, viral clips, podcast numbers.",
-    "Something personal to close — the stuff fans connect with."
+    "Joseph Gelito is a Filipino comedian and diva who turns every stage into a party — big hair, gold sequins and the kind of punchlines that leave the whole room in tears.",
+    "He's one-third of Dreamgays Rewind with Thage and Bona: three divas, one stage, non-stop laughs and live songs.",
+    "Off stage, Joseph keeps fans laughing on YouTube — from the cooking show where you learn absolutely nothing (Panlasang Charot) to fiestas in Antique and trips to Boracay and Vegas."
   ],
   stats: [
-    { value: "10+", label: "Years on stage" },
-    { value: "2", label: "Comedy specials" },
-    { value: "1M+", label: "Followers" }
+    { value: "3", label: "Divas, one stage" },
+    { value: "20+", label: "Videos on YouTube" },
+    { value: "Jan 22", label: "Live in Long Beach, CA" }
   ],
 
-  // YouTube video IDs (the part after watch?v=). Empty id = placeholder tile.
+  // YouTube: main videos + vertical shorts (ids from youtube.com/@josephgelito9803)
   videos: [
-    { id: "", title: "Clip title one" },
-    { id: "", title: "Clip title two" },
-    { id: "", title: "Clip title three" },
-    { id: "", title: "Clip title four" }
+    { id: "0cRkaMzqCPs", title: "Hahabol-Habol — live with a Fil-Am symphony orchestra" },
+    { id: "Ma3LohCwQcY", title: "Trip na Trip Ko ang Boracay" },
+    { id: "MdwTCEcGxvc", title: "Fiesta sa Antique — Feel na Feel Ko!" },
+    { id: "nRJfxeqiRYA", title: "Sunlight Good Vibes with Jazz & Nar" },
+    { id: "yK4r50WCPoQ", title: "Guest Love: The Party Decor & Entertainment" }
   ],
-  videosMore: "#",
+  shorts: [
+    { id: "uMWLrCjrzqw", title: "Panlasang Charot — cooking lesson na walang matututunan!" },
+    { id: "KLgDMRw8UJ8", title: "Dyosa ng Lumot" },
+    { id: "0pjCFV48UUM", title: "Titanic Kuno" },
+    { id: "4xtImGkduf0", title: "See Good Diet in Vegas" },
+    { id: "y9PKkn33cfI", title: "4th of July Pancit at Paksiw!" },
+    { id: "KDN29Qxhok0", title: "Happy Halloween" },
+    { id: "EphepCQG9Jk", title: "Ai Ai Delas Alas — Friend" }
+  ],
+  videosMore: "https://www.youtube.com/@josephgelito9803",
 
-  merch: [
-    { name: "Tour Tee", price: "₱1,200", img: "", href: "#" },
-    { name: "Logo Hoodie", price: "₱2,400", img: "", href: "#" },
-    { name: "Dad Hat", price: "₱900", img: "", href: "#" },
-    { name: "Sticker Pack", price: "₱250", img: "", href: "#" }
-  ],
-  merchStore: "#",
-
-  news: [
-    { date: "2026-11-01", title: "Headline about a new tour announcement", excerpt: "Short excerpt of the article.", href: "#", img: "" },
-    { date: "2026-10-12", title: "Headline about the new special", excerpt: "Short excerpt of the article.", href: "#", img: "" },
-    { date: "2026-09-20", title: "Interview with a big outlet", excerpt: "Short excerpt of the article.", href: "#", img: "" }
-  ],
+  merch: [],       // empty = section hidden
+  merchStore: "",
+  news: [],        // empty = section hidden
 
   contacts: [
-    { role: "Management", name: "Management Company", line: "manager@example.com" },
-    { role: "Booking", name: "Booking Agency", line: "booking@example.com" },
-    { role: "Press", name: "PR Firm", line: "press@example.com" },
-    { role: "Brands & Partnerships", name: "Agency Name", line: "brands@example.com" }
+    { role: "Bookings & Shows", name: "Joseph Gelito", line: "714-322-3528" },
+    { role: "Dreamgays Rewind Tickets", name: "Enteng", line: "323-449-3174" }
   ],
-  fanEmail: "hello@example.com"
+  fanEmail: ""
 };
